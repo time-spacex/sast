@@ -1,0 +1,9 @@
+SAST:
+  stage: sast
+  image: "$CI_REGISTRY/semgrep-sast:latest-nonroot"
+  tags: [docker]
+  rules:
+      - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master"
+  script:
+    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.ddos-guard.net/web/sast
+    - semgrep --metrics=off --config=./sast/rules/ ./
