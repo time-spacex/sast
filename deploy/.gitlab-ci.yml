@@ -6,7 +6,8 @@ services:
 
 SAST:
   stage: sast
-  image: registry.ddos-guard.net/semgrep-sast:latest-nonroot
+#  image: registry.ddos-guard.net/semgrep-sast:latest-nonroot
+  image: semgrep/semgrep:latest-nonroot
   tags: [docker]
   variables:
     GIT_STRATEGY: clone
@@ -21,4 +22,3 @@ SAST:
     when: always
     expire_in: 1 week
   allow_failure: true
-  # test commit
