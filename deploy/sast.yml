@@ -16,5 +16,5 @@ SAST:
       - ./sast-2/rules/result.xml
     reports:
       junit: ./sast-2/rules/result.xml
-    when: always
-  allow_failure: true
+#    when: always
+#  allow_failure: true
