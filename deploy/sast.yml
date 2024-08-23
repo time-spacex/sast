@@ -1,7 +1,9 @@
 SAST:
   stage: sast
-  image: "$CI_REGISTRY/semgrep-sast:latest-nonroot"
+#  image: "$CI_REGISTRY/semgrep-sast:latest-nonroot"
+  image: semgrep/semgrep:latest-nonroot
   tags: [docker]
   script:
-    - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.ddos-guard.net/web/sast
+  #  - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.ddos-guard.net/web/sast
+    - git clone http://gitlab.test-vm1.testdomain.org/user-git-1/sast-2
     - semgrep --metrics=off --config=./sast/rules/ ./
