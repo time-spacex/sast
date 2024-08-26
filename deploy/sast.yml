@@ -10,11 +10,24 @@ SAST:
   #  - semgrep --metrics=off --config=./sast/rules/ ./
   # настройки для работы на тестовой машине:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
-    - semgrep ci --gitlab-sast > ./sast-2/result.json --config=./sast-2/rules/ --no-suppress-errors -v
+    - semgrep ci --json > ./sast-2/result.json --config=./sast-2/rules/ --no-suppress-errors -v
   artifacts:
     paths:
       - ./sast-2/result.json
-    reports:
-      sast: ./sast-2/result.json
+  #  reports:
+  #    junit: ./sast-2/rules/result.xml
     when: always
 #  allow_failure: true
+
+PARSE_JSON:
+  stage: parse
+  image: python:3.8-slim
+  tags: [docker]
+  script:
+    - python json-to-junit-parser.py
+  artifacts:
+    paths:
+      - ./sast-2/result.xml
+    reports:
+      junit: ./sast-2/rules/result.xml
+    when: always
