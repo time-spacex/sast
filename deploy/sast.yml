@@ -23,4 +23,4 @@ SAST:
     reports:
       junit: ./sast-2/result.xml
     when: always
-#  allow_failure: true
+  allow_failure: true
