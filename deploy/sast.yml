@@ -10,12 +10,12 @@ SAST:
   #  - semgrep --metrics=off --config=./sast/rules/ ./
   # настройки для работы на тестовой машине:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
-    - semgrep ci --gitlab-sast > ./sast-2/rules/result.json --config=./sast-2/rules/
+    - semgrep ci --junit-xml > ./sast-2/rules/result.xml --config=./sast-2/rules/
   artifacts:
     paths:
-      - ./sast-2/rules/result.json
+      - ./sast-2/rules/result.xml
     reports:
-      sast: ./sast-2/rules/result.json
+      sast: ./sast-2/rules/result.xml
     when: always
   only:
    - merge_requests
