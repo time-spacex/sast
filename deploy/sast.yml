@@ -10,7 +10,7 @@ SAST:
   #  - semgrep --metrics=off --config=./sast/rules/ ./
   # настройки для работы на тестовой машине:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
-    - semgrep ci --gitlab-sast > ./sast-2/rules/result.json --config=./sast-2/rules/ --no-suppress-errors
+    - semgrep ci --gitlab-sast > ./sast-2/rules/result.json --config=./sast-2/rules/
   artifacts:
     paths:
       - ./sast-2/rules/result.json
