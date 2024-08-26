@@ -10,12 +10,12 @@ SAST:
   #  - semgrep --metrics=off --config=./sast/rules/ ./
   # настройки для работы на тестовой машине:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
-    - semgrep ci --json > ./sast-2/result.json --config=./sast-2/rules/ --no-suppress-errors
-    - cat ./sast-2/result.json
+    - semgrep ci --junit-xml &> ./sast-2/result.xml --config=./sast-2/rules/ --no-suppress-errors
+    - cat ./sast-2/result.xml
   artifacts:
     paths:
-      - ./sast-2/result.json
-  #  reports:
-  #    junit: ./sast-2/result.xml
+      - ./sast-2/result.xml
+    reports:
+      junit: ./sast-2/result.xml
     when: always
 #  allow_failure: true
