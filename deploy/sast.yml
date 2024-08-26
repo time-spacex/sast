@@ -14,10 +14,11 @@ SAST:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
     - semgrep ci --json > ./sast-2/result.json --config=./sast-2/rules/ --no-suppress-errors -v
     - python json-to-junit-parser.py
+    - ls -la
   artifacts:
     paths:
       - ./sast-2/result.json
     reports:
-      junit: ./sast-2/rules/result.xml
+      junit: ./sast-2/result.xml
     when: always
 #  allow_failure: true
