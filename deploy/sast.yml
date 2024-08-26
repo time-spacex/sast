@@ -18,6 +18,6 @@ SAST:
       sast: ./sast-2/rules/result.xml
     when: always
   only:
-   - merge_requests
-   - branches
+    - merge_requests
+    - branches
 #  allow_failure: true
