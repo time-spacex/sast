@@ -18,6 +18,7 @@ SAST:
   artifacts:
     paths:
       - ./sast-2/result.json
+      - ./sast-2/result.xml
     reports:
       junit: ./sast-2/result.xml
     when: always
