@@ -3,6 +3,8 @@ SAST:
 #  image: "$CI_REGISTRY/semgrep-sast:latest-nonroot"
   image: semgrep/semgrep:latest-nonroot
   tags: [docker]
+  services:
+    - python:3.8-slim
   script:
   #  - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.ddos-guard.net/web/sast
   # клонирование sast с тестового репозитория
@@ -11,23 +13,11 @@ SAST:
   # настройки для работы на тестовой машине:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
     - semgrep ci --json > ./sast-2/result.json --config=./sast-2/rules/ --no-suppress-errors -v
-  artifacts:
-    paths:
-      - ./sast-2/result.json
-  #  reports:
-  #    junit: ./sast-2/rules/result.xml
-    when: always
-#  allow_failure: true
-
-PARSE_JSON:
-  stage: parse
-  image: python:3.8-slim
-  tags: [docker]
-  script:
     - python json-to-junit-parser.py
   artifacts:
     paths:
-      - ./sast-2/result.xml
+      - ./sast-2/result.json
     reports:
       junit: ./sast-2/rules/result.xml
     when: always
+#  allow_failure: true
