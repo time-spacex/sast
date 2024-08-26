@@ -17,4 +17,7 @@ SAST:
     reports:
       sast: ./sast-2/rules/result.json
     when: always
+  only:
+   - merge_requests
+   - branches
 #  allow_failure: true
