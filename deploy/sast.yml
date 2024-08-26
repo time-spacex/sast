@@ -5,7 +5,7 @@ SAST:
   tags: [docker]
   services:
     - python:3.8-slim
-  script:
+  before_script:
   #  - git clone https://gitlab-ci-token:${CI_JOB_TOKEN}@git.ddos-guard.net/web/sast
   # клонирование sast с тестового репозитория
     - git clone http://gitlab.test-vm1.testdomain.org/user-git-1/sast-2
@@ -13,6 +13,7 @@ SAST:
   # настройки для работы на тестовой машине:
   #  - semgrep --metrics=off --config=./sast-2/rules/ ./
     - semgrep ci --json > ./sast-2/result.json --config=./sast-2/rules/ --no-suppress-errors -v
+  script:
     - python json-to-junit-parser.py
     - ls -la
   artifacts:
